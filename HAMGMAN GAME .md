@@ -1,41 +1,49 @@
-#include <iostream> 
-#include<ctime>
-#include<vector>
+#include <iostream>   //Input Output library
+#include<ctime>       //Time library
+#include<vector>      //Vector library 
 using namespace std; 
 
 
-int word_guess();
-int sum_game();
-int number_guess();
-void display_status(vector <char> incorrect, string answer );
-void end_game(string answer, string codeword);
-string generateRandomword();
+int word_guess();         //User defined function for word guessing game
+int sum_game();           //User defined function for sum game
+int number_guess();       //User defined function for number guessing game
+void display_status(vector <char> incorrect, string answer );        //User defined function for displaying hangman
+void end_game(string answer, string codeword);               //User defined function for end of game
+string generateRandomword();                  //User defined function for generating random words
 
 
 
 int main () { 
-    int a,b;
-    char choice;
+    int a,b;           //variable initialization
+    char choice;    
   
+  //Do-While loop for repetition of code until user choose to exit
     do{
    cout<<"=======================\n";
    cout<<"Welcome to Hangman game.\n";
    cout<<"=======================\n";
 
+    //Menu for selecting game
    cout<<"Please choose a module which you want to play. "<<endl;
    cout<<"1. Random Number Guessing game.\n2. Addition. \n3. Guess a Random Word. \n4. Exit.\n"<<endl;
-   cin>>a;
+   cin>>a;   //User choice
+
+   //Switch statements for executing game according to user choice
       switch (a)
       {
+        //Case 1 for number guessing game
       case 1:
          number_guess();
          break;
+         //Case 2 for Sum game
       case 2:
          sum_game();
          break;
+         //Case 3 for word guessing game
       case 3:
          word_guess();
          break;
+         //exit game
       case 4:
          return 0;;
          break;
@@ -43,15 +51,16 @@ int main () {
       default:
          break;
       } 
+      //Asking for user choice to continue
       cout<<"Do you want to play it again? (y=yes, n=no): "; cin>>choice;  }while(choice=='y');   
     
 
     return 0;
 }
-
+//Function prototype for generating random words
 string generateRandomword()
 {
-      vector<string> wordList = {
+      vector<string> wordList = {        //Word list
         "page",
         "hangman",
         "computer",
@@ -81,19 +90,21 @@ string generateRandomword()
 
     // Return the randomly selected word
     return wordList[randomIndex];}   
+    //Function prototype for ending game
 void end_game(string answer, string codeword)
 {
- if(answer==codeword)
+ if(answer==codeword)     //Condition for Game win
  {
    cout<<"\n\nHooray! You saved the person from being hanged.\n"<<endl;
    cout<<"Congratulations.\n";
  }
-else
+else                      //Lose game
 {
    cout<<"\n\nOh no! The person is being hanged.\n\n";
    cout<<"Better luck nex time.\n\n";
 }
 }
+//Fuction prototype for displaying incorrect answer
 void display_status(vector <char> incorrect, string answer )
 {
   cout<<"Incorrect guesses: \n";
@@ -183,10 +194,11 @@ void display_misses(int misses)
   }
 
 }
+//Function prototype for word guessing words 
 int word_guess()
 {   
-     string codeword = generateRandomword();
-    string answer(codeword.length(), '_');
+    string codeword = generateRandomword();   //random word generation
+    string answer(codeword.length(), '_');    
     int misses=0;
     char letter;
     bool guess=false;
@@ -224,6 +236,7 @@ int word_guess()
 
 
 }
+//Function prototype for sum game
 int sum_game()
     
     { 
@@ -252,6 +265,7 @@ int sum_game()
     else{cout<<"\n\nYou loosed! The person is being hanged. \n\n"<<endl<<"\nBetter luck next time\n"<<endl;}
     return 0;
     }
+    //function protype for number guessing game
 int number_guess()
 {
   int a,b=0,c;
